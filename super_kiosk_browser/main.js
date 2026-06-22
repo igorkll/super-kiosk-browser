@@ -3,6 +3,14 @@ let debug = false
 const { app, BrowserWindow, ipcMain } = require('electron')
 const path = require('path')
 
+function getArgIndex(index) {
+    if (!app.isPackaged) {
+        return index + 1
+    }
+
+    return index
+}
+
 function createWindow () {
     const win = new BrowserWindow({
         frame: debug,
@@ -16,7 +24,7 @@ function createWindow () {
             contextIsolation: true,
             webviewTag: true,
             preload: path.join(__dirname, 'preload.js'),
-            additionalArguments: [`--url=${process.argv[2]}`]
+            additionalArguments: [`--url=${process.argv[getArgIndex(1)]}`]
         }
     })
 
