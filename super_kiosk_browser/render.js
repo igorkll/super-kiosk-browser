@@ -1,5 +1,5 @@
-const url = window.electronAPI.getUrl()
-const webview = document.getElementById('webview')
+let url = window.electronAPI.getUrl()
+if (!url.startsWith("http:") && !url.startsWith("https:")) url = "file:///" + url
 
-console.log(url)
+const webview = document.getElementById('webview')
 webview.src = url
