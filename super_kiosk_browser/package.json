@@ -1,5 +1,11 @@
 {
   "name": "super_kiosk_browser",
   "version": "1.0.0",
-  "main": "main.js"
+  "main": "main.js",
+  "scripts": {
+    "pack": "electron-packager . super_kiosk_browser --platform=win32 --arch=x64 --out=super_kiosk_browser_build --overwrite --electron-version=38.1.2 || electron-packager . super_kiosk_browser --platform=linux --arch=x64,arm64 --out=super_kiosk_browser_build --overwrite --electron-version=38.1.2"
+  },
+  "devDependencies": {
+    "@electron/packager": "^20.0.1"
+  }
 }
