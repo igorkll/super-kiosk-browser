@@ -6,6 +6,7 @@ if (!url.startsWith("http:") && !url.startsWith("https:")) url = "file:///" + ur
 // --------------------------------------------
 
 const webview = document.getElementById("webview")
+const loading_process = document.getElementById("loading-process")
 
 const checkUrl = "https://www.google.com"
 const checkPeriod = 10000
@@ -14,6 +15,7 @@ const checkTimeout = 3000
 function setShowState(state) {
     webview.style.display = state ? "" : "none"
     document.body.style.cursor = state ? "" : "none"
+    loading_process.style.display = state ? "none" : "flex"
 }
 
 if (url.startsWith("file:")) {
@@ -45,12 +47,12 @@ if (url.startsWith("file:")) {
             hasInternet = nowHas
             if (hasInternet) {
                 webview.src = url
-                setShowState(true)
             } else {
                 webview.src = ""
-                setShowState(false)
             }
         }
+
+        setShowState(nowHas)
     }
 
     setInterval(updateInternetStatus, checkPeriod)

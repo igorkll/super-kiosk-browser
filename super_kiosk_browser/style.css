@@ -30,7 +30,7 @@ body > * {
 }
 
 .loading-process {
-    display: flex;
+    display: none;
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
