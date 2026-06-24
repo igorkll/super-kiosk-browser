@@ -14,7 +14,7 @@ function getArgIndex(index) {
 function createWindow () {
     const win = new BrowserWindow({
         frame: debug,
-        fullscreen: !debug,
+        // fullscreen: !debug,
         width: 1280,
         height: 720,
         show: false,
@@ -58,6 +58,7 @@ function createWindow () {
     }
 
     win.once('ready-to-show', () => {
+        win.setFullScreen(!debug)
         win.show()
     })
 
