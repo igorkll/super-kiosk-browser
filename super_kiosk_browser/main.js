@@ -18,6 +18,7 @@ function createWindow () {
         width: 1280,
         height: 720,
         show: false,
+        backgroundColor: "#000000",
         webPreferences: {
             devTools: debug, // DON'T FORGET TO TURN OFF THE DAMN DEVTOOLS!
             nodeIntegration: false,
