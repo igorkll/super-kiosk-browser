@@ -7,9 +7,12 @@ if (!url.startsWith("http:") && !url.startsWith("https:")) url = "file:///" + ur
 
 const webview = document.getElementById('webview')
 const checkUrl = 'https://www.google.com'
+const checkPeriod = 10000
+const checkTimeout = 3000
 
 function setShowState(state) {
     webview.style.display = state ? "" : "none"
+    document.body.style.cursor = show ? "" : "none"
 }
 
 if (url.startsWith("file:")) {
@@ -21,7 +24,7 @@ if (url.startsWith("file:")) {
     async function checkInternet() {
         try {
             const controller = new AbortController()
-            const timeoutId = setTimeout(() => controller.abort(), 3000)
+            const timeoutId = setTimeout(() => controller.abort(), checkTimeout)
             const response = await fetch(checkUrl, {
                 method: 'HEAD',
                 signal: controller.signal,
@@ -49,7 +52,7 @@ if (url.startsWith("file:")) {
         }
     }
 
-    setInterval(updateInternetStatus, 1000)
+    setInterval(updateInternetStatus, checkPeriod)
     updateInternetStatus()
 }
 

@@ -10,7 +10,8 @@ html, body {
 }
 
 body {
-    background-color: 0x000000;
+    background-color: #000000;
+    cursor: none;
 }
 
 .webview {
