@@ -17,6 +17,9 @@ I made this little project because the kiosks in all the browsers that I've seen
 The hotkeys don't turn off completely, and the browser interface sometimes flashes when loading. Pop-up windows will often appear on top of the kiosk.  
 this project solves this by making a NORMAL kiosk browser.  
 
+## warnings
+* this project disables the chromium and electron hotkeys themselves. but it does not disable the hotkeys of your operating system. you can do this yourself or make a specialized OS using mkbootable, Gnubox maker or Winbox maker.
+
 ## launch
 
 ### linux arm64
