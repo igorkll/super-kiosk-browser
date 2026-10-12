@@ -46,3 +46,5 @@ super_kiosk_browser.exe http://youtube.com
 * --check-timeout=NUMBER - defines the connection timeout after which the Internet connection will be considered missing (default: 3000)
 * --force-internet-check - forces the browser to check the internet even for local html files
 * --no-internet-check - disables internet check
+* --show-first-internet-check - makes it display the process of the first Internet check, which is hidden by default
+* --hide-internet-check - disables the display of the internet access check
