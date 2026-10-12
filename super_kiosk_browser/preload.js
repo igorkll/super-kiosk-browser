@@ -1,8 +1,13 @@
 const { contextBridge } = require('electron')
 
 const args = process.argv
-const url = args.find(arg => arg.startsWith('--url='))?.split('=')[1]
+
+function readPreloadArg(name) {
+    return args.find(arg => arg.startsWith(`--${name}=`))?.split('=')[1]
+}
+
+const user_args = JSON.parse(readPreloadArg("user-args"))
 
 contextBridge.exposeInMainWorld('electronAPI', {
-    getUrl: () => url
+    getUserArgs: () => user_args
 })

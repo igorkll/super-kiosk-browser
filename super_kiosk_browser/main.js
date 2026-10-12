@@ -1,20 +1,14 @@
-let debug = false
+let debug = true
 
 const { app, BrowserWindow, ipcMain } = require('electron')
 const path = require('path')
 
-function getArgIndex(index) {
-    if (!app.isPackaged) {
-        return index + 1
-    }
-
-    return index
-}
-
 function createWindow () {
+    let additionalArguments = process.argv.slice(app.isPackaged ? 1 : 2)
+    let user_args = JSON.stringify(additionalArguments)
+    
     const win = new BrowserWindow({
         frame: debug,
-        // fullscreen: !debug,
         width: 1280,
         height: 720,
         show: false,
@@ -23,9 +17,10 @@ function createWindow () {
             devTools: debug, // DON'T FORGET TO TURN OFF THE DAMN DEVTOOLS!
             nodeIntegration: false,
             contextIsolation: true,
+            sandbox: true,
             webviewTag: true,
             preload: path.join(__dirname, 'preload.js'),
-            additionalArguments: [`--url=${process.argv[getArgIndex(1)]}`]
+            additionalArguments: [`--user-args=${user_args}`]
         }
     })
 
@@ -58,8 +53,11 @@ function createWindow () {
     }
 
     win.once('ready-to-show', () => {
-        win.setFullScreen(!debug)
-        win.show()
+        if (debug) {
+            win.show()
+        } else {
+            win.setFullScreen(true)
+        }
     })
 
     win.loadFile(path.join(__dirname, 'main.html'))
