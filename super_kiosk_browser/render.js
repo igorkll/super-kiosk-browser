@@ -7,6 +7,8 @@ const checkPeriod = argparser_readNonPositionArg_number(nonPositionArgs, "check-
 const checkTimeout = argparser_readNonPositionArg_number(nonPositionArgs, "check-timeout", 3000)
 const forceInternetCheck = argparser_checkNonPositionArg(nonPositionArgs, "force-internet-check")
 const noInternetCheck = argparser_checkNonPositionArg(nonPositionArgs, "no-internet-check")
+const showFirstInternetCheck = argparser_checkNonPositionArg(nonPositionArgs, "show-first-internet-check")
+const hideInternetCheck = argparser_checkNonPositionArg(nonPositionArgs, "hide-internet-check")
 
 // --------------------------------------------
 
@@ -16,9 +18,15 @@ const webview = document.getElementById("webview")
 const loading_process = document.getElementById("loading-process")
 
 function setShowState(state) {
+    if (hideInternetCheck) state = true;
+    
     webview.style.display = state ? "" : "none"
     document.body.style.cursor = state ? "" : "none"
     loading_process.style.display = state ? "none" : "flex"
+}
+
+if (showFirstInternetCheck) {
+    setShowState(false)
 }
 
 if ((url.startsWith("file:") || noInternetCheck) && !forceInternetCheck) {

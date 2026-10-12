@@ -44,4 +44,5 @@ super_kiosk_browser.exe http://youtube.com
 * --check-url=URL - the url that the browser will ping to check the Internet (default: https://www.google.com)
 * --check-period=NUMBER - determines the time in milliseconds for how often the Internet is being checked (default: 10000)
 * --check-timeout=NUMBER - defines the connection timeout after which the Internet connection will be considered missing (default: 3000)
-* --force-internet-check - 
+* --force-internet-check - forces the browser to check the internet even for local html files
+* --no-internet-check - disables internet check
