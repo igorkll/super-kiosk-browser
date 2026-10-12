@@ -1,16 +1,17 @@
-{
+const user_args = window.electronAPI.getUserArgs()
+const {positionArgs, nonPositionArgs} = argparser_parseArgs(user_args)
 
-let url = window.electronAPI.getUrl()
+let url = positionArgs[0]
+const checkUrl = argparser_readNonPositionArg(argparser_readNonPositionArg, "check-url", "https://www.google.com")
+const checkPeriod = argparser_readNonPositionArg_number(argparser_readNonPositionArg, "check-period", 10000)
+const checkTimeout = argparser_readNonPositionArg_number(argparser_readNonPositionArg, "check-timeout", 3000)
+
 if (!url.startsWith("http:") && !url.startsWith("https:")) url = "file:///" + url
 
 // --------------------------------------------
 
 const webview = document.getElementById("webview")
 const loading_process = document.getElementById("loading-process")
-
-const checkUrl = "https://www.google.com"
-const checkPeriod = 10000
-const checkTimeout = 3000
 
 function setShowState(state) {
     webview.style.display = state ? "" : "none"
@@ -57,6 +58,4 @@ if (url.startsWith("file:")) {
 
     setInterval(updateInternetStatus, checkPeriod)
     updateInternetStatus()
-}
-
 }

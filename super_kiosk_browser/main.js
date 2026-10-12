@@ -1,4 +1,4 @@
-let debug = true
+const debug = true
 
 const { app, BrowserWindow, ipcMain } = require('electron')
 const path = require('path')
