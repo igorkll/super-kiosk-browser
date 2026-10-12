@@ -3,7 +3,9 @@ const { contextBridge } = require('electron')
 const args = process.argv
 
 function readPreloadArg(name) {
-    return args.find(arg => arg.startsWith(`--${name}=`))?.split('=')[1]
+    const prefix = `--${name}=`
+    const arg = args.find(arg => arg.startsWith(prefix))
+    return arg ? arg.slice(prefix.length) : def
 }
 
 const user_args = JSON.parse(readPreloadArg("user-args"))

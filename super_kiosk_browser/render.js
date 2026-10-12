@@ -2,9 +2,9 @@ const user_args = window.electronAPI.getUserArgs()
 const {positionArgs, nonPositionArgs} = argparser_parseArgs(user_args)
 
 let url = positionArgs[0]
-const checkUrl = argparser_readNonPositionArg(argparser_readNonPositionArg, "check-url", "https://www.google.com")
-const checkPeriod = argparser_readNonPositionArg_number(argparser_readNonPositionArg, "check-period", 10000)
-const checkTimeout = argparser_readNonPositionArg_number(argparser_readNonPositionArg, "check-timeout", 3000)
+const checkUrl = argparser_readNonPositionArg(nonPositionArgs, "check-url", "https://www.google.com")
+const checkPeriod = argparser_readNonPositionArg_number(nonPositionArgs, "check-period", 10000)
+const checkTimeout = argparser_readNonPositionArg_number(nonPositionArgs, "check-timeout", 3000)
 
 if (!url.startsWith("http:") && !url.startsWith("https:")) url = "file:///" + url
 
