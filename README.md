@@ -37,4 +37,11 @@ cd super_kiosk_browser_build/super_kiosk_browser-win32-x64
 super_kiosk_browser.exe http://youtube.com
 ```
 
-
+## args
+### position
+1. URL
+### non-position
+* --check-url=URL - the url that the browser will ping to check the Internet (default: https://www.google.com)
+* --check-period=NUMBER - determines the time in milliseconds for how often the Internet is being checked (default: 10000)
+* --check-timeout=NUMBER - defines the connection timeout after which the Internet connection will be considered missing (default: 3000)
+* --force-internet-check - 
