@@ -13,6 +13,11 @@ function argparser_parseArgs(args) {
     return {positionArgs, nonPositionArgs}
 }
 
+function argparser_readPositionArg(positionArgs, index, def=null) {
+    if (positionArgs.length <= index) return def
+    return positionArgs[index] ?? def
+}
+
 function argparser_readNonPositionArg(nonPositionArgs, name, def=null) {
     const prefix = `--${name}=`
     const arg = nonPositionArgs.find(arg => arg.startsWith(prefix))
@@ -20,8 +25,13 @@ function argparser_readNonPositionArg(nonPositionArgs, name, def=null) {
 }
 
 function argparser_readNonPositionArg_number(nonPositionArgs, name, def=null) {
+    def = def != null ? Number(def) : null
     const readed = argparser_readNonPositionArg(nonPositionArgs, name, def)
-    return readed ? Number(readed) : null
+    if (readed == null) return def
+    if (readed.length === 0) return def
+    const num = Number(readed)
+    if (Number.isNaN(num)) return def
+    return num
 }
 
 function argparser_checkNonPositionArg(nonPositionArgs, name) {

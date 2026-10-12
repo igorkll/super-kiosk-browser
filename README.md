@@ -39,7 +39,7 @@ super_kiosk_browser.exe http://youtube.com
 
 ## args
 ### position
-1. URL
+1. URL (default: https://example.com)
 ### non-position
 * --check-url=URL - the url that the browser will ping to check the Internet (default: https://www.google.com)
 * --check-period=NUMBER - determines the time in milliseconds for how often the Internet is being checked (default: 10000)
